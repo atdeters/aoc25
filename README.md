@@ -1,3 +1,7 @@
+![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-2025-red)
+![Stars](https://img.shields.io/badge/⭐%2Stars-0%2F24-yellow)
+![C++98](https://img.shields.io/badge/C%2B%2B-98-00599C?logo=c%2B%2B&logoColor=white)
+
 # 🎄 Advent of Code 2025 – My Solutions
 
 Welcome!  
