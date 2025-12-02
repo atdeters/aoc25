@@ -26,16 +26,17 @@ dayXX/
 - **`src/`**  
   Contains all the code needed to solve that day’s puzzle.
 
+  
+- **`input/`**  
+  Place your personal puzzle input here.  
+  ⚠️ The file **must be named `input.txt`** for the following scripts to work.
+
 - **`run-pt1.sh` & `run-pt2.sh`**  
   These scripts will:
   1. Compile the program
   2. Run the solution for the selected part
   3. Log the output
   4. Clean up any compiled/generated files afterward
-  
-- **`input/`**  
-  Place your personal puzzle input here.  
-  ⚠️ The file **must be named `input.txt`** for the scripts to work.
 
 ---
 
