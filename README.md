@@ -28,7 +28,7 @@ dayXX/
 
 - **`run-pt1.sh` & `run-pt2.sh`**  
   These scripts will:
-  1. Compile the program (if needed)
+  1. Compile the program
   2. Run the solution for the selected part
   3. Log the output
   4. Clean up any compiled/generated files afterward
