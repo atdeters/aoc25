@@ -33,7 +33,7 @@ while True:
     arr_new = [[0]*width for _ in range(hight)]
     flag = False
     for line in range(hight):
-        for idx, spot in enumerate(array[line]):
+        for idx in range(width):
             tmp = 0
             if idx != 0 and array[line][idx-1] == '@':
                 tmp += 1
