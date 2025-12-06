@@ -1,12 +1,8 @@
-#include <cstdio>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <stdlib.h>
 #include <algorithm>
-
-#define VERBOSE 1
 
 int main( int ac, char **av ) {
 
@@ -21,17 +17,18 @@ int main( int ac, char **av ) {
 		return 1;
 	}
 
+	// === GET PUZZLE INPUT ===
 	std::string currentLine;
 	std::vector<std::string> lines;
 	while (std::getline(file, currentLine)) {
-		if (currentLine == "") {
-			continue;
+		if (currentLine != "") {
+			lines.push_back(currentLine);
 		}
-		lines.push_back(currentLine);
 	}
 
 	size_t fields = lines.size();
 
+	// === FILL VEC WITH CORRECT ORDER ===
 	std::vector<std::string> newVec;
 	for (size_t j = 0; j < lines[0].size(); j++) {
 		std::string curr;
@@ -57,15 +54,17 @@ int main( int ac, char **av ) {
 		}
 	}
 
+	// === CALCULATE THE ACTUAL RESULT ===
 	long result = 0;
 	size_t i = 0;
 	while (i < newVec.size()) {
-		size_t emptyLineCount = 0;
-		std::vector<std::string> tmp;
 
+		// === CREATE CURRENT BLOCK TO CALCULATE ===
+		size_t emptyLineCount = 0;
+		std::vector<std::string> block;
 		while (i < newVec.size() && emptyLineCount < fields) {
 			if (newVec[i] != "") {
-				tmp.push_back(newVec[i]);
+				block.push_back(newVec[i]);
 				emptyLineCount = 0;
 			}
 			else {
@@ -73,39 +72,30 @@ int main( int ac, char **av ) {
 			}
 			i++;
 		}
-		
+	
+		// === SORT BLOCK TO GET EXPR TO THE TOP ===
+		std::sort(block.begin(), block.end());
 
-
-		std::sort(tmp.begin(), tmp.end());
-
-
-		bool tmpResSet = false;
-		long tmpRes = 0;
-		bool exprSet = false;
+		// === CALCULATE CURRENT BLOCK ===
+		long blockRes = 0;
 		char expr = 0;
-		for (size_t j = 0; j < tmp.size(); j++) {
-			if (!exprSet) {
-				expr = tmp[j][0];
-				exprSet = true;
-				continue;
+		for (size_t j = 0; j < block.size(); j++) {
+			if (expr == 0) {
+				expr = block[j][0];
 			}
-			else if (!tmpResSet) {
-				tmpRes = std::atoi(tmp[j].c_str());
-				tmpResSet = true;
-				continue;
+			else if (blockRes == 0) {
+				blockRes = std::atoi(block[j].c_str());
 			}
-			if (expr == '+') {
-				tmpRes += std::atoi(tmp[j].c_str());
+			else if (expr == '+') {
+				blockRes += std::atoi(block[j].c_str());
 			}
 			else if (expr == '*') {
-				tmpRes *= std::atoi(tmp[j].c_str());
+				blockRes *= std::atoi(block[j].c_str());
 			}
 		}
-		result += tmpRes;
+		result += blockRes;
 	}
 
 	std::cout << "The actual result of the homework is \e[1m" <<  result << "\e[0m" <<  std::endl;
-
-
 	file.close();
 }
