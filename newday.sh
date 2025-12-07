@@ -14,7 +14,7 @@ fi
 if [[ $lang == "c" || $lang == "C" ]]; then
 	echo Chosen Template: C
 else
-	echo Unknown Template: $lang 1>&2
+	echo "Unknown Template: $lang" 1>&2
 	exit 1;
 fi
 
