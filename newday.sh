@@ -13,6 +13,8 @@ fi
 # Verify (optional) language
 if [[ ($lang == "c" || $lang == "C") && $# -eq 2 ]]; then
 	echo Chosen Template: C
+elif [[ $lang == "rust" ]]; then
+    echo Chosen Template: Rust
 elif [[ $# -eq 2 ]]; then
 	echo "Unknown Template: $lang" 1>&2
 	exit 1
@@ -36,4 +38,12 @@ if [[ $# -eq 2 && ($lang == "c" || $lang == "C") ]]; then
 	mv main.c $name.c
 	echo "$name.c created successfully! Enjoy the puzzle :)"
 	exit 0
+elif [[ $# -eq 2 && $lang == "rust" ]]; then
+    cargo new $name --quiet
+    mv $name/* .
+    rm -rf $name
+    cd src
+    mv main.rs $name.rs
+    echo "$name.rs created successfully! Enjoy the puzzle :)"
+    exit 0
 fi
