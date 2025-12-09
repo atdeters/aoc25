@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 cd src
-cargo run --quiet
+cargo run --bin pt1 --quiet
