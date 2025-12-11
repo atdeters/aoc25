@@ -39,7 +39,7 @@ int main( int ac, char **av ) {
 	Vec a;
 	Vec b;
 	std::vector<Pair> pairs;
-	for (Iter it = coor.begin(); it != coor.end(); it++) {
+	for (auto it : coor) {
 		for (Iter jt = it + 1; jt != coor.end(); jt++) {
 			double dist = Vec::dist(*it, *jt);
 			Pair tmp;
